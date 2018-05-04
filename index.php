@@ -13,9 +13,9 @@
 <form action = "" method = "post">
 
 <label for = "type">Air Pollution</label>
-<input type = "checkbox" name = "type">Smoke
-<input type = "checkbox" name = "type">Smog
-<input type = "checkbox" name = "type">Smell
+<input type = "radio" name = "type">Smoke
+<input type = "radio" name = "type">Smog
+<input type = "radio" name = "type">Smell
 
 </form>
 
