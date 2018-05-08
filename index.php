@@ -1,6 +1,15 @@
 <?php include "head.php"; ?>
 <body>
-    
+
+<script>
+
+$(document).ready(function() {
+$.get("api/api_test.php", function(data) {
+    alert(data);
+});
+});
+
+</script>
 <h1 class="type">Type of Pollution</h1>
 
 <form action = "" method = "post">
