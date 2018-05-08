@@ -15,6 +15,8 @@ while ($row = mysqli_fetch_assoc($test_query)) {
     $beam ->longitude = $lon;
 }
 
+// get rid of object, turn into assoc array, and json_encode array
+
 class content {
     function __construct() 
     { 
