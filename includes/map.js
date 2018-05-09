@@ -11,8 +11,8 @@ function getLocation() {
     }
 }
 function showPosition(position) {
-    var lat = position.coords.latitude;
-    var long = position.coords.longitude;
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
     console.log(lat + " " + long);
     return lat_long[lat, long];
 }

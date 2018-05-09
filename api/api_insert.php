@@ -1,14 +1,15 @@
 <?php
+include "../db.php";
+include "../includes/functions.php";
 
-if (isSet($_POST['location'])) {
-    $lat = $_POST['lat'];
-    $lon = $_POST['lon'];
+if (isSet($_POST['submit'])) {
+    $report = $_POST['type'];
 
-    $query = "INSERT INTO location (lat, lon) ";
-    $query .= "VALUES('{$lat}', '{$lon}') ";
-    $find_me = mysqli_query($connect, $query);
+    $query = "INSERT INTO location WHERE report ";
+    $query .= "VALUES('{$report}') ";
+    $add_report = mysqli_query($connect, $query);
     
-    $confirmQuery($find_me);
+    $confirmQuery($add_report);
 }
 
 ?>
