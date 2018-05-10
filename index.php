@@ -3,6 +3,10 @@
 
 <h1 class="type">Type of Pollution</h1>
 
+<div class="test">
+
+</div>
+
 <form action = "api/api_insert.php" method = "post">
 
     <label for = "type">Air Pollution</label>
@@ -21,11 +25,11 @@
 <script><?php include "includes/map.js"; ?></script>
 <script>
 
-$(document).ready(function() {
-$.get("api/api_test.php", function(data) {
-    alert(data);
-});
-});
+// $(document).ready(function() {
+// $.get("api/api_test.php", function(data) {
+//     console.log(data);
+// });
+// });
 
 // $("#location").click(function() {
 //     $.post("api/api_insert.php", function (lat_lon, status) {

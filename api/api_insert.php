@@ -9,7 +9,7 @@ if (isSet($_POST['submit'])) {
     $query .= "VALUES('{$report}') ";
     $add_report = mysqli_query($connect, $query);
     
-    $confirmQuery($add_report);
+    confirmQuery($add_report);
 }
 
 ?>

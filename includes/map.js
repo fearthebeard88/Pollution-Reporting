@@ -1,6 +1,8 @@
 
 var long;
 var lat;
+
+var lat_long = [];
  
 var x = document.getElementById("demo");
 function getLocation() {
@@ -14,7 +16,7 @@ function showPosition(position) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
     console.log(lat + " " + long);
-    return lat_long[lat, long];
+    return lat_long = [lat, long];
 }
 
 $("#location").click(function() {
