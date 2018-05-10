@@ -3,7 +3,7 @@
 
 <h1 class="type">Type of Pollution</h1>
 
-<div class="test">
+<div id="demo">
 
 </div>
 

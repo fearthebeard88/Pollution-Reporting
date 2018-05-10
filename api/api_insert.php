@@ -3,7 +3,7 @@ include "../db.php";
 include "../includes/functions.php";
 
 if (isSet($_POST['submit'])) {
-    $report = $_POST['type'];
+    $report = $_POST['submit'];
 
     $query = "INSERT INTO location WHERE report ";
     $query .= "VALUES('{$report}') ";

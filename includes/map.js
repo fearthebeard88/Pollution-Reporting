@@ -18,17 +18,20 @@ function showPosition(position) {
     console.log(lat + " " + long);
     var lat_long = [lat, long];
     console.log(lat_long);
+    
+    $("#location").click(function() {
+        $.post("../api/api_insert.php", {
+            latitude: lat,
+            longitude: long
+        },
+            function(data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+
 }
 
-$("#location").click(function() {
-    $.post("../api/api_insert.php", {
-        latitude: lat,
-        longitude: long
-    },
-        function(data, status) {
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-});
+
 
 getLocation();
 var map = L.map('map').fitWorld();
