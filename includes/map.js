@@ -18,11 +18,10 @@ function showPosition(position) {
     console.log(lat + " " + long);
     var lat_long = [lat, long];
     console.log(lat_long);
-    
+
     $("#location").click(function() {
-        $.post("../api/api_insert.php", {
-            latitude: lat,
-            longitude: long
+        $.post("../api/api_insert.php", function(data) {
+            console.log(lat_long);
         },
             function(data, status) {
             alert("Data: " + data + "\nStatus: " + status);
