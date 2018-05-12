@@ -7,7 +7,7 @@
 
 </div>
 
-<form action = "api/api_insert.php" method = "post">
+<form id = "pollution" action = "" method = "post">
 
     <label for = "type">Air Pollution</label>
         <input type = "radio" name = "type" value = "smoke">Smoke
@@ -27,8 +27,8 @@
 
 // $(document).ready(function() {
 // $.get("api/api_test.php", function(data) {
-//     console.log(data);
-// });
+//          console.log(data);
+//      })
 // });
 
 // $("#location").click(function() {

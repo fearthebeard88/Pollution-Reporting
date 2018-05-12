@@ -15,18 +15,15 @@ function getLocation() {
 function showPosition(position) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
-    console.log(lat + " " + long);
+    // console.log(lat + " " + long);
     var lat_long = [lat, long];
-    console.log(lat_long);
+    // console.log(lat_long);
 
-    $("#location").click(function() {
-        $.post("../api/api_insert.php", function(data) {
-            console.log(lat_long);
-        },
-            function(data, status) {
-            alert("Data: " + data + "\nStatus: " + status);
-        });
-    });
+    // $("#location").click(function() {
+    //     $.post("../api/api_insert.php", $("#pollution").serialize(), function(data) {
+    //         alert("Data: " + data + "\nStatus: " + status);
+    //     })
+    // });
 
 }
 
@@ -40,7 +37,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
             '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
             'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        id: 'mapbox.streets'
+        id: 'mapbox.satellite'
     }).addTo(map);
 
 map.locate({setView: true, maxZoom: 12});
@@ -61,4 +58,18 @@ function onLocationError(e) {
 }
 
 map.on('locationerror', onLocationError);
+
+$(document).ready(function() {
+    $.get("api/api_test.php", function(data) {
+         // for (x = 0; x <= data.length; x++) {
+            rawData = $.parseJSON(data);
+            console.log(rawData);
+     // }
+    });
+    // function popups(lat, lon) {
+    //     var marker = L.marker()
+    // }
+    });
+
+
 
