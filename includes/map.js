@@ -66,9 +66,12 @@ $(document).ready(function() {
             console.log(rawData);
      // }
     });
-    // function popups(lat, lon) {
-    //     var marker = L.marker()
-    // }
+    function popups() {
+        for (let x = 0; x <= rawData.length; x ++) {
+            var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
+        }
+    }
+    popups();
     });
 
 
