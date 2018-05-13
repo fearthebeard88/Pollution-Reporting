@@ -55,11 +55,12 @@ map.on('locationerror', onLocationError);
 $(document).ready(function() {
     $.get("api/api_test.php", function(data) {
             rawData = $.parseJSON(data);
-            //console.log(rawData);
+            console.log(rawData);
             for (let x = 0; x <= rawData.length; x++) {
                 latitude = rawData[x].lat;
                 longitude = rawData[x].lon;
                 console.log("latitude: " + latitude + "\nlongitude: " + longitude);
+                var marker = L.marker([latitude, longitude]).addTo(map);
             }
                     // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
                 });
