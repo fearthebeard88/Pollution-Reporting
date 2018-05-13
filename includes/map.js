@@ -18,13 +18,6 @@ function showPosition(position) {
     // console.log(lat + " " + long);
     var lat_long = [lat, long];
     // console.log(lat_long);
-
-    // $("#location").click(function() {
-    //     $.post("../api/api_insert.php", $("#pollution").serialize(), function(data) {
-    //         alert("Data: " + data + "\nStatus: " + status);
-    //     })
-    // });
-
 }
 
 
@@ -61,18 +54,13 @@ map.on('locationerror', onLocationError);
 
 $(document).ready(function() {
     $.get("api/api_test.php", function(data) {
-         // for (x = 0; x <= data.length; x++) {
             rawData = $.parseJSON(data);
-            console.log(rawData);
-     // }
-    });
-    function popups() {
-        for (let x = 0; x <= rawData.length; x ++) {
-            var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
-        }
-    }
-    popups();
-    });
-
-
-
+            //console.log(rawData);
+            for (let x = 0; x <= rawData.length; x++) {
+                latitude = rawData[x].lat;
+                longitude = rawData[x].lon;
+                console.log("latitude: " + latitude + "\nlongitude: " + longitude);
+            }
+                    // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
+                });
+            });
