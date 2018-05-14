@@ -13,7 +13,7 @@
         <input type = "radio" name = "type" value = "smoke">Smoke
         <input type = "radio" name = "type" value = "smog">Smog
         <input type = "radio" name = "type" value = "smell">Smell
-        <input id = "location" type = "submit" name = "submit" value = "Report">
+        <input id = "submit" type = "submit" name = "submit" value = "Report">
 </form>
 
 <div id = "map">
@@ -24,18 +24,6 @@
 </body>
 <script><?php include "includes/map.js"; ?></script>
 <script>
-
-// $(document).ready(function() {
-// $.get("api/api_test.php", function(data) {
-//          console.log(data);
-//      })
-// });
-
-// $("#location").click(function() {
-//     $.post("api/api_insert.php", function (lat_lon, status) {
-//         alert("Location: " + lat_lon + "\nStatus: " + status);
-//     })
-// })
 
 </script>
 <?php include "footer.php"; ?>

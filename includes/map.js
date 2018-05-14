@@ -65,3 +65,10 @@ $(document).ready(function() {
                     // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
                 });
             });
+
+$("submit").click(function() {
+    var report = $("pollution").val();
+    $.post("api/api_insert.php", report.serialize(), function(data) {
+        console.log("Data: " + data + "\nStatus: " + status);
+    })
+})
