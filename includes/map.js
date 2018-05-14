@@ -56,7 +56,7 @@ $(document).ready(function() {
     $.get("api/api_test.php", function(data) {
             rawData = $.parseJSON(data);
             console.log(rawData);
-            for (let x = 0; x <= rawData.length; x++) {
+            for (let x = 0; x < rawData.length; x++) {
                 latitude = rawData[x].lat;
                 longitude = rawData[x].lon;
                 console.log("latitude: " + latitude + "\nlongitude: " + longitude);
