@@ -59,16 +59,11 @@ $(document).ready(function() {
             for (let x = 0; x < rawData.length; x++) {
                 latitude = rawData[x].lat;
                 longitude = rawData[x].lon;
-                console.log("latitude: " + latitude + "\nlongitude: " + longitude);
+                // console.log("latitude: " + latitude + "\nlongitude: " + longitude);
                 var marker = L.marker([latitude, longitude]).addTo(map);
             }
                     // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
                 });
+
             });
 
-$("submit").click(function() {
-    var report = $("pollution").val();
-    $.post("api/api_insert.php", report.serialize(), function(data) {
-        console.log("Data: " + data + "\nStatus: " + status);
-    })
-})
