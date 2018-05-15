@@ -27,8 +27,9 @@
 
 $("#submit").on("click", function(event) {
     event.preventDefault();
+    var value = $("input[type='radio'][name='type']:checked").val();
     console.log("hello, this thing working?");
-    $.post("api/api_insert.php", $("#pollution").val(), function(data) {
+    $.post("api/api_insert.php", value, function(data) {
         console.log("Data: " + data + "\nStatus: " + status);
     })
 })
