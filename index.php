@@ -7,7 +7,7 @@
 
 </div>
 
-<form id = "pollution" action = "" method = "post">
+<form id = "pollution" action = "api/api_insert.php" method = "post">
 
     <label for = "type">Air Pollution</label>
         <input type = "radio" name = "type" value = "smoke">Smoke
@@ -30,12 +30,18 @@ $("#submit").on("click", function(event) {
     var potential = $("input[type='radio'][name='type']:checked");
     var value = potential.val();
     console.log(value);
-    $.post("api/api_insert.php", {
+    $.ajax({
+        type: "POST",
+        url: "api/api_insert.php",
+        data: {
         report: value
-        }, function(data, status) {
-        console.log("Status: " + status);
+        },
+        success: function(data, status) {
+        console.log("Data: " + data + "\nStatus: " + status);
+        }
     })
 })
+
 
 </script>
 <?php include "footer.php"; ?>
