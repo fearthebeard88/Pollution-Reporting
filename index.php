@@ -25,23 +25,6 @@
 <script><?php include "includes/map.js"; ?></script>
 <script>
 
-$("#submit").on("click", function(event) {
-    event.preventDefault();
-    var potential = $("input[type='radio'][name='type']:checked");
-    var value = potential.val();
-    console.log(value);
-    $.ajax({
-        type: "POST",
-        url: "api/api_insert.php",
-        data: {
-        report: value
-        },
-        success: function(data, status) {
-        console.log("Data: " + data + "\nStatus: " + status);
-        }
-    })
-})
-
 
 </script>
 <?php include "footer.php"; ?>
