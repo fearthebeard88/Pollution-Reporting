@@ -27,10 +27,13 @@
 
 $("#submit").on("click", function(event) {
     event.preventDefault();
-    var value = $("input[type='radio'][name='type']:checked").val();
-    console.log("hello, this thing working?");
-    $.post("api/api_insert.php", value, function(data) {
-        console.log("Data: " + data + "\nStatus: " + status);
+    var potential = $("input[type='radio'][name='type']:checked");
+    var value = potential.val();
+    console.log(value);
+    $.post("api/api_insert.php", {
+        report: value
+        }, function(data, status) {
+        console.log("Status: " + status);
     })
 })
 
