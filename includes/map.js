@@ -19,7 +19,17 @@ function showPosition(position) {
     // sticking the coords into an array for ease of access
     lat_long = [lat, long];
 
-    
+    $.getJSON('https://nominatim.openstreetmap.org/reverse', {
+    lat: position.coords.latitude,
+    lon: position.coords.longitude,
+    format: 'json',
+}, function (result) {
+    console.log(result);
+    city = result.address.city;
+    state = result.address.state;
+    country = result.address.country;
+    console.log("City: " + city + "\nState: " + state + "\nCountry: " + country);
+});
     
 }
 
@@ -99,7 +109,10 @@ map.on('locationerror', onLocationError);
                     data: {
                     report: value,
                     latitude: lat_long[0],
-                    longitude: lat_long[1]
+                    longitude: lat_long[1],
+                    city: city,
+                    state: state,
+                    country: country
                     },
                     success: function(data, status) {
                     console.log("Data: " + data + "\nStatus: " + status);
