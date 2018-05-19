@@ -1,3 +1,4 @@
+$(document).ready(function() { 
  // place for error message
 var x = document.getElementById("demo");
 // getting geolocation data
@@ -53,21 +54,28 @@ function onLocationError(e) {
 
 map.on('locationerror', onLocationError);
 // when the page loads, run this
-$(document).ready(function() {
     // get request to api
     $.get("api/api_test.php", function(data) {
         // response from api, changes from string, into js object
             rawData = $.parseJSON(data);
             console.log(rawData);
+            var marker_cluster = L.markerClusterGroup();
             // listing all the data from the database
             for (let x = 0; x < rawData.length; x++) {
                 latitude = rawData[x].lat;
                 longitude = rawData[x].lon;
-                // console.log("latitude: " + latitude + "\nlongitude: " + longitude);
+                
                 // creating a marker with information from database
+                var m = L.marker([rawData[x].lat, rawData[x].lon]).bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
+                marker_cluster.addLayer(m);
                 var marker = L.marker([latitude, longitude]).addTo(map);
+
                 marker.bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
+                
+                marker_cluster.addLayer(m);
+                
             }
+            map.addLayer(marker_cluster);
                     // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
                 });
 
@@ -95,4 +103,5 @@ $(document).ready(function() {
                     console.log("Data: " + data + "\nStatus: " + status);
                     }
                 })
+                $("#results").text(value);
             })

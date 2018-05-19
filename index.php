@@ -7,6 +7,10 @@
 
 </div>
 
+<div id = "results">
+
+</div>
+
 <form id = "pollution" action = "api/api_insert.php" method = "post">
 
     <label for = "type">Air Pollution</label>
