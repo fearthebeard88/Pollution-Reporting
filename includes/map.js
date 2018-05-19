@@ -18,6 +18,8 @@ function showPosition(position) {
     // console.log(lat + " " + long);
     // sticking the coords into an array for ease of access
     lat_long = [lat, long];
+
+    
     
 }
 
