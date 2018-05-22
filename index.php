@@ -13,7 +13,7 @@
 
 <form id = "pollution" action = "api/api_insert.php" method = "post">
 
-    <label for = "type">Air Pollution</label>
+    <label for = "type">Air Pollution: </label>
         <input type = "radio" name = "type" value = "smoke">Smoke
         <input type = "radio" name = "type" value = "smog">Smog
         <input type = "radio" name = "type" value = "smell">Smell
