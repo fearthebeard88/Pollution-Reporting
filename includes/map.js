@@ -35,6 +35,7 @@ function showPosition(position) {
 
 getLocation();
 
+function makeMap() {}
 var map = L.map('map').fitWorld();
 
 // calling on leaflet api for map
