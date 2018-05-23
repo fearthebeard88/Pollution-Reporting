@@ -1,6 +1,4 @@
 $(document).ready(function() { 
- // place for error message
-var x = document.getElementById("demo");
 // getting geolocation data
 function getLocation() {
     // if it can find you, run this
@@ -8,6 +6,8 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(showPosition);
         // if it cant find you, run this instead
     } else {
+         // place for error message
+        var x = document.getElementById("demo");
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
@@ -18,7 +18,7 @@ function showPosition(position) {
     // console.log(lat + " " + long);
     // sticking the coords into an array for ease of access
     lat_long = [lat, long];
-
+function city_state() {
     $.getJSON('https://nominatim.openstreetmap.org/reverse', {
     lat: position.coords.latitude,
     lon: position.coords.longitude,
@@ -30,7 +30,9 @@ function showPosition(position) {
     country = result.address.country;
     console.log("City: " + city + "\nState: " + state + "\nCountry: " + country);
 });
-    
+
+}
+    city_state();
 }
 
 getLocation();
@@ -38,6 +40,7 @@ getLocation();
 function makeMap() {}
 var map = L.map('map').fitWorld();
 
+function renderMap(){
 // calling on leaflet api for map
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -66,6 +69,10 @@ function onLocationError(e) {
 }
 
 map.on('locationerror', onLocationError);
+}
+renderMap();
+
+function getData(){
 // when the page loads, run this
     // get request to api
     $.get("api/api_test.php", function(data) {
@@ -91,12 +98,19 @@ map.on('locationerror', onLocationError);
             map.addLayer(marker_cluster);
                     // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
                 });
+            }
+            getData();
 
             });
+            
 
             $("#submit").on("click", function(event) {
                 // stopping the submit button from loading the page again
                 event.preventDefault();
+                postData();
+            })
+
+            function postData() {
                 // assigning the radio button that is checked to a variable
                 var potential = $("input[type='radio'][name='type']:checked");
                 // checked radio buttons value
@@ -120,4 +134,4 @@ map.on('locationerror', onLocationError);
                     }
                 })
                 $("#results").text(value);
-            })
+            }
