@@ -1,4 +1,4 @@
-$(document).ready(function() { 
+
 // getting geolocation data
 function getLocation() {
     // if it can find you, run this
@@ -10,7 +10,7 @@ function getLocation() {
         var x = document.getElementById("demo");
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
-}
+
 // retreiving the latitude and longitude and coords
 function showPosition(position) {
     lat = position.coords.latitude;
@@ -35,12 +35,16 @@ function city_state() {
     city_state();
 }
 
-getLocation();
+}
+
+// getLocation();
+function renderMap(){
 
 function makeMap() {}
+
 var map = L.map('map').fitWorld();
 
-function renderMap(){
+
 // calling on leaflet api for map
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
@@ -69,8 +73,8 @@ function onLocationError(e) {
 }
 
 map.on('locationerror', onLocationError);
-}
-renderMap();
+
+// renderMap();
 
 function getData(){
 // when the page loads, run this
@@ -100,15 +104,11 @@ function getData(){
                 });
             }
             getData();
-
-            });
+        }
+            
             
 
-            $("#submit").on("click", function(event) {
-                // stopping the submit button from loading the page again
-                event.preventDefault();
-                postData();
-            })
+            
 
             function postData() {
                 // assigning the radio button that is checked to a variable
@@ -136,13 +136,13 @@ function getData(){
                 $("#results").text(value);
             }
 
-            // $(document).ready(function() {
-            //     getLocation();
-            //     showPosition(position);
-            //     city_state();
-            //     getLocation();
-            //     makeMap();
-            //     initialize();
-            //     renderMap();
-            //     getData();
-            // });
+            $(document).ready(function() {
+                getLocation();
+                renderMap();
+            });
+
+            $("#submit").on("click", function(event) {
+                // stopping the submit button from loading the page again
+                event.preventDefault();
+                postData();
+            })
