@@ -135,3 +135,14 @@ function getData(){
                 })
                 $("#results").text(value);
             }
+
+            // $(document).ready(function() {
+            //     getLocation();
+            //     showPosition(position);
+            //     city_state();
+            //     getLocation();
+            //     makeMap();
+            //     initialize();
+            //     renderMap();
+            //     getData();
+            // });
