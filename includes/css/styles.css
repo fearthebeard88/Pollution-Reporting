@@ -9,14 +9,17 @@
     color: red;
 }
 
-.type,
-#pollution {
+.type {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     flex: 0 1 auto;
 }
 
-label > input {
-    justify-content: space-evenly;
+#pollution {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 10px;
 }
+

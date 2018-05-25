@@ -18,65 +18,46 @@ function showPosition(position) {
     // console.log(lat + " " + long);
     // sticking the coords into an array for ease of access
     lat_long = [lat, long];
-function city_state() {
+
     $.getJSON('https://nominatim.openstreetmap.org/reverse', {
-    lat: position.coords.latitude,
-    lon: position.coords.longitude,
-    format: 'json',
-}, function (result) {
-    console.log(result);
-    city = result.address.city;
-    state = result.address.state;
-    country = result.address.country;
-    console.log("City: " + city + "\nState: " + state + "\nCountry: " + country);
-});
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+        format: 'json',
+            }, function (result) {
+                console.log(result);
+                city = result.address.city;
+                state = result.address.state;
+                country = result.address.country;
+                console.log("City: " + city + "\nState: " + state + "\nCountry: " + country);
+            });
+        }
+    }
 
-}
-    city_state();
-}
-
-}
-
-// getLocation();
 function renderMap(){
 
-function makeMap() {}
+    var map = L.map('map').fitWorld();
 
-var map = L.map('map').fitWorld();
+    // calling on leaflet api for map
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'mapbox.streets'
+        }).addTo(map);
+    // centering the map and setting the default zoom
+    map.locate({setView: true, maxZoom: 11});
 
+    //    L.circle(e.latlng, radius).addTo(map);
+    // }
 
-// calling on leaflet api for map
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        id: 'mapbox.streets'
-    }).addTo(map);
-// centering the map and setting the default zoom
-map.locate({setView: true, maxZoom: 11});
+    // if it runs into any problems, will give error message
+    function onLocationError(e) {
+        alert(e.message);
+    }
 
-// function onLocationFound(e) {
-//    var radius = e.accuracy / 2;
+    map.on('locationerror', onLocationError);
 
-//    L.marker(e.latlng).addTo(map)
-//        .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-//    L.circle(e.latlng, radius).addTo(map);
-// }
-
-// map.on('locationfound', onLocationFound);
-
-// if it runs into any problems, will give error message
-function onLocationError(e) {
-   alert(e.message);
-}
-
-map.on('locationerror', onLocationError);
-
-// renderMap();
-
-function getData(){
 // when the page loads, run this
     // get request to api
     $.get("api/api_test.php", function(data) {
@@ -97,19 +78,13 @@ function getData(){
                 marker.bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
                 
                 marker_cluster.addLayer(m);
-                
             }
+            
             map.addLayer(marker_cluster);
                     // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
                 });
             }
-            getData();
-        }
             
-            
-
-            
-
             function postData() {
                 // assigning the radio button that is checked to a variable
                 var potential = $("input[type='radio'][name='type']:checked");
