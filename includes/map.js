@@ -29,9 +29,9 @@ function showPosition(position) {
                 state = result.address.state;
                 country = result.address.country;
                 console.log("City: " + city + "\nState: " + state + "\nCountry: " + country);
-            });
-        }
+        });
     }
+}
 
 function renderMap(){
 
@@ -85,31 +85,31 @@ function renderMap(){
             });
         }
             
-            function postData() {
-                // assigning the radio button that is checked to a variable
-                var potential = $("input[type='radio'][name='type']:checked");
-                // checked radio buttons value
-                var value = potential.val();
-                console.log(value);
-                console.log(lat_long);
-                $.ajax({
-                    // post request to api
-                    type: "POST",
-                    url: "api/api_insert.php",
-                    data: {
-                    report: value,
-                    latitude: lat_long[0],
-                    longitude: lat_long[1],
-                    city: city,
-                    state: state,
-                    country: country
-                    },
-                    success: function(data, status) {
-                    console.log("Data: " + data + "\nStatus: " + status);
-                    }
-                })
-                $("#results").text(value);
-            }
+function postData() {
+    // assigning the radio button that is checked to a variable
+    var potential = $("input[type='radio'][name='type']:checked");
+    // checked radio buttons value
+    var value = potential.val();
+    console.log(value);
+    console.log(lat_long);
+    $.ajax({
+        // post request to api
+        type: "POST",
+        url: "api/api_insert.php",
+        data: {
+        report: value,
+        latitude: lat_long[0],
+        longitude: lat_long[1],
+        city: city,
+        state: state,
+        country: country
+        },
+        success: function(data, status) {
+        console.log("Data: " + data + "\nStatus: " + status);
+        }
+    })
+    $("#results").text(value);
+}
 
             $(document).ready(function() {
                 getLocation();
