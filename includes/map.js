@@ -1,6 +1,7 @@
 
 // getting geolocation data
 function getLocation() {
+    
     // if it can find you, run this
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -81,7 +82,7 @@ function renderMap(){
             }
             
             map.addLayer(marker_cluster);
-                    // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
+                    
             });
         }
             
