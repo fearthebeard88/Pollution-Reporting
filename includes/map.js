@@ -82,8 +82,8 @@ function renderMap(){
             
             map.addLayer(marker_cluster);
                     // var marker = L.marker(rawData[x].lat, rawData[x].lon).addTo(map);
-                });
-            }
+            });
+        }
             
             function postData() {
                 // assigning the radio button that is checked to a variable
