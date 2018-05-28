@@ -16,9 +16,12 @@
     flex: 0 1 auto;
 }
 
-#pollution {
+form {
     display: flex;
+    flex-flow: row wrap;
     justify-content: center;
-    flex-direction: row;
-    margin: 10px;
+}
+
+.submit {
+    margin-left: 10px;
 }
