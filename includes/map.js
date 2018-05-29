@@ -1,22 +1,7 @@
 
-// getting geolocation data
-function getLocation() {
-    
-    // if it can find you, run this
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-        // if it cant find you, run this instead
-    } else {
-         // place for error message
-        var x = document.getElementById("demo");
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-
-// retreiving the latitude and longitude and coords
 function showPosition(position) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
-    // console.log(lat + " " + long);
     // sticking the coords into an array for ease of access
     lat_long = [lat, long];
 
@@ -32,6 +17,21 @@ function showPosition(position) {
                 console.log("City: " + city + "\nState: " + state + "\nCountry: " + country);
         });
     }
+// getting geolocation data
+function getLocation() {
+    
+    // if it can find you, run this
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        // if it cant find you, run this instead
+    } else {
+         // place for error message
+        var x = document.getElementById("demo");
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+
+// retreiving the latitude and longitude and coords
+
 }
 
 function renderMap(){
@@ -61,8 +61,9 @@ function renderMap(){
 
 // when the page loads, run this
     // get request to api
+    function makeMarkers() {
     $.get("api/api_test.php", function(data) {
-        // response from api, changes from string, into js object
+        // response from api, changes from string into js object
             rawData = $.parseJSON(data);
             console.log(rawData);
             var marker_cluster = L.markerClusterGroup();
@@ -81,10 +82,12 @@ function renderMap(){
                 marker_cluster.addLayer(m);
             }
             
-            map.addLayer(marker_cluster);
+           return map.addLayer(marker_cluster);
                     
-            });
-        }
+    });
+}
+makeMarkers();
+}
             
 function postData() {
     // assigning the radio button that is checked to a variable
