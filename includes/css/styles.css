@@ -16,12 +16,14 @@
     flex: 0 1 auto;
 }
 
-form {
+#pollution,
+#mobile-form {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
 }
 
-.submit {
+.submit,
+.m_submit {
     margin-left: 10px;
 }
