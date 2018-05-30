@@ -63,7 +63,7 @@ function showPosition(position) {
 
 function renderMap(){
 
-    var map = L.map('map').fitWorld();
+    var map = L.map('map', {zoomControl: false}).fitWorld();
 
     // calling on leaflet api for map
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -116,6 +116,32 @@ function postData() {
     $("#results").text(value);
 }
 
+function mobilePostData() {
+    // assigning the radio button that is checked to a variable
+    var potential = $("input[type='radio'][name='m_type']:checked");
+    // checked radio buttons value
+    var value = potential.val();
+    console.log(value);
+    console.log(lat_long);
+    $.ajax({
+        // post request to api
+        type: "POST",
+        url: "api/api_insert.php",
+        data: {
+        report: value,
+        latitude: lat_long[0],
+        longitude: lat_long[1],
+        city: city,
+        state: state,
+        country: country
+        },
+        success: function(data, status) {
+        console.log("Data: " + data + "\nStatus: " + status);
+        }
+    })
+    $("#results").text(value);
+}
+
             $(document).ready(function() {
                 getLocation();
                 renderMap();
@@ -125,4 +151,10 @@ function postData() {
                 // stopping the submit button from loading the page again
                 event.preventDefault();
                 postData();
+            })
+
+            $("#m_submit").on("click", function(event) {
+                // stopping the submit button from loading the page again
+                event.preventDefault();
+                mobilePostData();
             })
