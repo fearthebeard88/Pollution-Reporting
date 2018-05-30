@@ -16,14 +16,22 @@
     flex: 0 1 auto;
 }
 
-#pollution,
-#mobile-form {
+#pollution {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
 }
 
-.submit,
+.submit {
+    margin-left: 10px;
+}
+
+#mobile-pollution {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
 .m_submit {
     margin-left: 10px;
 }
