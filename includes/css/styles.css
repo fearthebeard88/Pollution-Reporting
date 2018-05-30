@@ -16,22 +16,30 @@
     flex: 0 1 auto;
 }
 
-#pollution {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
+@media only screen and (min-width: 600px) {
+    #pollution {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
 
-.submit {
-    margin-left: 10px;
+    .submit {
+        margin-left: 10px;
+    }
 }
 
 #mobile-pollution {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .m_submit {
     margin-left: 10px;
+}
+
+.m_radio input {
+    margin-left: 10px;
+    flex-flow: row wrap;
 }

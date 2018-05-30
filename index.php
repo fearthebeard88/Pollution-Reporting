@@ -36,10 +36,11 @@
             <input type="radio" name = "m_type" value = "smoke">Smoke
             <input type="radio" name = "m_type" value = "smog">Smog
             <input type="radio" name = "m_type" value = "smell">Smell
+            </div>
             <div class = "m_submit">
                 <input type = "submit" name = "m_submit" value = "Report">
             </div>
-        </div>
+        
 </form>
 
 </div>
