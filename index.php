@@ -1,13 +1,12 @@
 <?php include "head.php"; ?>
 <body>
 
-<div class = "something">
+
     <h1 class="type">Type of Pollution</h1>
     <div id="demo">
     </div>
     <div id = "results">
     </div>
-    <div class="form">
         <form id = "pollution" action = "api/api_insert.php" method = "post">
             <label for = "type">Air Pollution: </label>
                 <div class="radio">
@@ -19,8 +18,6 @@
                     <input id = "submit" type = "submit" name = "submit" value = "Report">
                 </div>
         </form>
-    </div>
-    <div class="mobile-form">
     <form id = "mobile-pollution" action = "api/api_insert.php" method = "post">
         <label for = "m_type">Air Pollution: </label>
             <div class="m_radio">
@@ -32,9 +29,7 @@
                     <input type = "submit" name = "m_submit" value = "Report" id = "m_submit">
                 </div>
     </form>
-    </div>
-    <div id = "map">
-    </div>
+<div id = "map">
 </div>
 </body>
 <script><?php include "includes/map.js"; ?></script>

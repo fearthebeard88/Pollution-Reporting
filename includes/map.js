@@ -14,7 +14,7 @@ function getMarkers(map) {
                 // creating a marker with information from database
                 var m = L.marker([rawData[x].lat, rawData[x].lon]).bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
                 marker_cluster.addLayer(m);
-                var marker = L.marker([latitude, longitude]).addTo(map);
+                var marker = L.marker([latitude, longitude]);
 
                 marker.bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
                 
