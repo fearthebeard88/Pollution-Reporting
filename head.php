@@ -9,6 +9,8 @@
     <title>Pollution Reporting</title>
     <link rel="stylesheet" href="includes/css/leaflet.css" />
     <link rel = "stylesheet" href = "includes/css/styles.css"/>
+    <link rel="stylesheet" href="includes/css/MarkerCluster.css">
+    <link rel="stylesheet" href="includes/css/MarkerCluster.Default.css">
     <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

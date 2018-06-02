@@ -1,5 +1,23 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+.something {
+    height: 100%;
+    width: 100%
+}
+
 #map {
-    height: 400px;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
 }
 
 #results {
@@ -11,17 +29,57 @@
 
 .type {
     display: flex;
+    position: relative;
     justify-content: center;
     flex-wrap: wrap;
     flex: 0 1 auto;
+    z-index: 1;
+    width: 100%;
 }
 
-form {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
+    #pollution {
+        display: flex;
+        position: absolute;
+        flex-flow: row wrap;
+        justify-content: center;
+        z-index: 5;
+        width: 100%;
+    }
 
-.submit {
-    margin-left: 10px;
-}
+    .submit {
+        margin-left: 10px;
+    }
+
+    #mobile-pollution {
+        display: flex;
+        position: absolute;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin-top: 20px;
+        z-index: 5;
+        width: 100%;
+    }
+
+    .m_submit {
+        margin-left: 10px;
+    }
+
+    .m_radio input {
+        margin-left: 10px;
+        flex-flow: row wrap;
+    }
+
+
+    @media only screen and (min-width: 600px) {
+        #mobile-pollution {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        #pollution {
+            display: none;
+        }
+    }
+
+    

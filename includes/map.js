@@ -1,4 +1,46 @@
 
+function getMarkers(map) {
+    // get request to api
+    $.get("api/api_test.php", function(data) {
+        // response from api, changes from string, into js object
+            rawData = $.parseJSON(data);
+            console.log(rawData);
+            var marker_cluster = L.markerClusterGroup();
+            // listing all the data from the database
+            for (let x = 0; x < rawData.length; x++) {
+                latitude = rawData[x].lat;
+                longitude = rawData[x].lon;
+                
+                // creating a marker with information from database
+                var m = L.marker([rawData[x].lat, rawData[x].lon]).bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
+                marker_cluster.addLayer(m);
+                var marker = L.marker([latitude, longitude]);
+
+                marker.bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
+                
+                marker_cluster.addLayer(m);
+            }
+            
+            map.addLayer(marker_cluster);
+                    
+            });
+        }
+
+// getting geolocation data
+function getLocation() {
+    
+    // if it can find you, run this
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        // if it cant find you, run this instead
+    } else {
+         // place for error message
+        var x = document.getElementById("demo");
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+// retreiving the latitude and longitude and coords
 function showPosition(position) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
@@ -16,7 +58,7 @@ function showPosition(position) {
                 country = result.address.country;
                 console.log("City: " + city + "\nState: " + state + "\nCountry: " + country);
         });
-    }
+}
 // getting geolocation data
 function getLocation() {
     
@@ -36,7 +78,7 @@ function getLocation() {
 
 function renderMap(){
 
-    var map = L.map('map').fitWorld();
+    var map = L.map('map', {zoomControl: false}).fitWorld();
 
     // calling on leaflet api for map
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -60,38 +102,38 @@ function renderMap(){
     map.on('locationerror', onLocationError);
 
 // when the page loads, run this
-    // get request to api
-    function makeMarkers() {
-    $.get("api/api_test.php", function(data) {
-        // response from api, changes from string into js object
-            rawData = $.parseJSON(data);
-            console.log(rawData);
-            var marker_cluster = L.markerClusterGroup();
-            // listing all the data from the database
-            for (let x = 0; x < rawData.length; x++) {
-                latitude = rawData[x].lat;
-                longitude = rawData[x].lon;
-                
-                // creating a marker with information from database
-                var m = L.marker([rawData[x].lat, rawData[x].lon]).bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
-                marker_cluster.addLayer(m);
-                var marker = L.marker([latitude, longitude]).addTo(map);
-
-                marker.bindPopup("<b>Report:</b> " + rawData[x].report + "\n<b>Latitude:</b> " + rawData[x].lat + "\n<b>Longitude:</b> " + rawData[x].lon);
-                
-                marker_cluster.addLayer(m);
-            }
-            
-           return map.addLayer(marker_cluster);
-                    
-    });
-}
-makeMarkers();
+getMarkers(map);
 }
             
 function postData() {
     // assigning the radio button that is checked to a variable
     var potential = $("input[type='radio'][name='type']:checked");
+    // checked radio buttons value
+    var value = potential.val();
+    console.log(value);
+    console.log(lat_long);
+    $.ajax({
+        // post request to api
+        type: "POST",
+        url: "api/api_insert.php",
+        data: {
+        report: value,
+        latitude: lat_long[0],
+        longitude: lat_long[1],
+        city: city,
+        state: state,
+        country: country
+        },
+        success: function(data, status) {
+        console.log("Data: " + data + "\nStatus: " + status);
+        }
+    })
+    $("#results").text(value);
+}
+
+function mobilePostData() {
+    // assigning the radio button that is checked to a variable
+    var potential = $("input[type='radio'][name='m_type']:checked");
     // checked radio buttons value
     var value = potential.val();
     console.log(value);
@@ -124,4 +166,10 @@ function postData() {
                 // stopping the submit button from loading the page again
                 event.preventDefault();
                 postData();
+            })
+
+            $("#m_submit").on("click", function(event) {
+                // stopping the submit button from loading the page again
+                event.preventDefault();
+                mobilePostData();
             })
